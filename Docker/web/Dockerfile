@@ -9,5 +9,5 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 
-#CMD	["alembic", "-c", "app/db/alembic.ini", "upgrade", "head"]
+CMD	["alembic", "-c", "app/db/alembic.ini", "upgrade", "head"]
 CMD ["uvicorn", "app.__main__:app", "--host", "0.0.0.0", "--port", "80"]
