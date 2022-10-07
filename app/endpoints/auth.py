@@ -41,9 +41,3 @@ async def registration_user(new_user: RegUser,
     )
     return Token(access_token=access_token, token_type="bearer")
 
-@registr_router.post(
-    "/whoami",
-    status_code=status.HTTP_200_OK,
-)
-async def get_user_info(session: AsyncSession = Depends(get_session)):
-    pass
