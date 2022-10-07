@@ -16,3 +16,4 @@ async def add_product(product: ProductRequest,
                       upload_files: List[UploadFile] = File(...),
                       current_user: str = Depends(get_current_user)) -> JSONResponse:
     urls = await downloadfilesproduct(upload_files)
+    urls
