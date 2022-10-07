@@ -13,7 +13,7 @@ class DefaultSettings(BaseSettings):
 
     ENV: str = environ.get("ENV", "local")
     PATH_PREFIX: str = environ.get("PATH_PREFIX", "/v1")
-    APP_HOST: str = environ.get("APP_HOST", "http://127.0.0.1")
+    APP_HOST: str = environ.get("APP_HOST", "http://0.0.0.0")
     APP_PORT: int = int(environ.get("APP_PORT", 8080))
 
     DB_NAME: str = environ.get("DB_NAME", "hack_vtb")

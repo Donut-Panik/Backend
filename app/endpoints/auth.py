@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from fastapi import APIRouter, Depends, Form, status, HTTPException
+from fastapi import APIRouter, Depends, Form, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.jwttoken import create_access_token
 from app.db.connection import get_session
@@ -31,7 +31,7 @@ async def login(phone: str = Form(..., description="Номер телефона"
                      response_model=Token,
                      status_code=status.HTTP_200_OK)
 async def registration_user(new_user: RegUser,
-                            session: AsyncSession = Depends(get_session)) -> dict:
+                            session: AsyncSession = Depends(get_session)) -> Token:
     await check_phone(new_user.phone, session)
     await create_user(new_user, session)
     # generate a jwt token and return
