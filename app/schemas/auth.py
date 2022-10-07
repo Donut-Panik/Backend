@@ -16,3 +16,4 @@ class RegUser(BaseModel):
     name: str
     surname: str
     phone: str
+    nickname: str

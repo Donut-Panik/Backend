@@ -28,6 +28,7 @@ class Users(DeclarativeBase):
     id = Column(
         "id", INTEGER, primary_key=True, unique=True, autoincrement=True, nullable=False
     )
+    nickname = Column("nickname", VARCHAR(30), nullable=False)
     name = Column("name", VARCHAR(15), nullable=False)
     user_type = Column("user_type", VARCHAR(15), nullable=False)
     surname = Column("surname", VARCHAR(20), nullable=False)

@@ -11,11 +11,11 @@ from fastapi.responses import JSONResponse
 new_wallet = '/v1/wallets/new'
 
 
-async def check_phone(phone: str, session: AsyncSession):
-    user_query = select(Users).where(Users.phone == phone)
+async def check_nickname(nickname: str, session: AsyncSession):
+    user_query = select(Users).where(Users.nickname == nickname)
     user: Users = await session.scalar(user_query)
     if user:
-        raise UserFoundException(error="Юзер с таким номером существует")
+        raise UserFoundException(error="Юзер с таким nickname существует")
 
 
 async def create_user(new_user: RegUser, session: AsyncSession):
@@ -29,15 +29,15 @@ async def create_user(new_user: RegUser, session: AsyncSession):
             )
         resp = response.json()
 
-    new_user = Users(name=new_user.name, surname=new_user.surname,
+    new_user = Users(nickname=new_user.nickname, name=new_user.name, surname=new_user.surname,
                      user_type="User", phone=new_user.phone,
                      wallet_private=resp["privateKey"], wallet_public=resp["publicKey"])
     session.add(new_user)
     await session.commit()
 
 
-async def find_by_phone(phone: str, session: AsyncSession) -> str:
-    user_query = select(Users).where(Users.phone == phone)
+async def find_by_nickname(nickname: str, session: AsyncSession) -> str:
+    user_query = select(Users).where(Users.phone == nickname)
     user: Users = await session.scalar(user_query)
     if not user:
         raise NotFoundException(error="Пользователь не найден")
