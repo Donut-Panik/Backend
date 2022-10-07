@@ -8,7 +8,7 @@ from app.utils.get_settings import auth
 from app.utils.get_settings import get_settings
 from app.schemas.auth import Token, RegUser
 from app.queery.auth import check_phone, create_user, find_by_phone
-
+from app.auth.oauth2 import get_current_user
 registr_router = APIRouter(tags=["Authorization"])
 
 
@@ -40,3 +40,11 @@ async def registration_user(new_user: RegUser,
         data={"sub": new_user.phone}, expires_delta=access_token_expires
     )
     return Token(access_token=access_token, token_type="bearer")
+
+@registr_router.post(
+    "/whoami",
+    status_code=status.HTTP_200_OK,
+)
+async def get_user_info(current_user: str = Depends(get_current_user),
+                        session: AsyncSession = Depends(get_session)):
+    pass

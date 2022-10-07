@@ -30,10 +30,7 @@ class DefaultSettings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(
         environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", 100000)
     )
-    YANDEX_FOOD_API_URL: str = (
-        "https://eda.yandex.ru/eats/v1/corp-orders/v1/payment/pay"
-    )
-    YANDEX_SECRET_KEY: str = "pochitatelnaya_svcpu:19a0511cad094f3897ac0863c235f65b"
+
 
     @property
     def database_settings(self) -> dict:
