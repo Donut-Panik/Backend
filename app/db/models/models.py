@@ -43,6 +43,7 @@ class ProductsModel(DeclarativeBase):
     id = Column("id", INTEGER, primary_key=True, unique=True, autoincrement=True)
     name = Column("name", VARCHAR(255), nullable=False)
     deleted = Column("deleted", BOOLEAN, default=False)
+    descriotion = Column("descriotion", VARCHAR(255), nullable=False)
     price = Column("price", FLOAT, nullable=False)
     photo = Column("photo", VARCHAR(255), nullable=False)
     __table_args__ = (CheckConstraint("price >= 0", name="check_price"),)

@@ -6,7 +6,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.cors import CORSMiddleware
-
+from fastapi_pagination import add_pagination
 from app.config import DefaultSettings
 from app.db.connection import SessionManager
 from app.endpoints import list_of_routes
@@ -50,6 +50,7 @@ def get_app() -> FastAPI:
     )
     settings = get_settings()
     bind_routes(application, settings)
+    add_pagination(application)
     application.state.settings = settings
     init_database()
     return application
