@@ -45,6 +45,5 @@ async def registration_user(new_user: RegUser,
     "/whoami",
     status_code=status.HTTP_200_OK,
 )
-async def get_user_info(current_user: str = Depends(get_current_user),
-                        session: AsyncSession = Depends(get_session)):
+async def get_user_info(session: AsyncSession = Depends(get_session)):
     pass
