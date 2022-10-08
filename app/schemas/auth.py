@@ -28,7 +28,7 @@ class SuccessfulResponse(BaseModel):
 
 
 class NftInfo(BaseModel):
-    URI: str
+    uri: str
     tokens: List[int]
 
 

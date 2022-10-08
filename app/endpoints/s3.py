@@ -35,11 +35,15 @@ class S3Service:
 
     @classmethod
     async def put_object(cls, img_name: str, file: bytes) -> dict:
-        return await cls.s3_client.put_object(Bucket=settings.BUCKET_NAME, Key=img_name, Body=file)
+        return await cls.s3_client.put_object(
+            Bucket=settings.BUCKET_NAME, Key=img_name, Body=file
+        )
 
     @classmethod
     async def delete_object(cls, img_name: str) -> dict:
-        return await cls.s3_client.delete_object(Bucket=settings.BUCKET_NAME, Key=img_name)
+        return await cls.s3_client.delete_object(
+            Bucket=settings.BUCKET_NAME, Key=img_name
+        )
 
     @classmethod
     async def close_s3_session(cls) -> None:
@@ -54,15 +58,11 @@ async def get_s3_client() -> aiobotocore.session.AioBaseClient:
 
 
 async def go(filename: str, file):
-    #folder_path = pathlib.Path(__file__).parent.resolve()
-    #upload_path = folder_path.joinpath(pathlib.Path(filename))
-    folder = 'aiobotocore'
-    key = '{}/{}'.format(folder, filename)
+    folder = "aiobotocore"
+    key = "{}/{}".format(folder, filename)
     client = await S3Service.get_s3_client()
-        # upload object to amazon s3
-    #file = open(upload_path, "r")
+    # upload object to amazon s3
+    # file = open(upload_path, "r")
     data = file.read()
-    resp = await client.put_object(Bucket=settings.BUCKET_NAME,
-                                   Key=key,
-                                   Body=data)
+    response = await client.put_object(Bucket=settings.BUCKET_NAME, Key=key, Body=data)
     return key

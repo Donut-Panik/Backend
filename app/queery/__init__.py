@@ -1,1 +1,1 @@
-baseUrl = 'https://hackathon.lsp.team/hk'
+baseUrl = "https://hackathon.lsp.team/hk"

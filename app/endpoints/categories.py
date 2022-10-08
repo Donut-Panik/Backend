@@ -52,7 +52,7 @@ async def get_magazine_categories(
     session: AsyncSession = Depends(get_session),
     current_user=Depends(get_current_user),
 ) -> List[CategoriesResponse]:
-    #await check_admin(current_user, session)
+    # await check_admin(current_user, session)
     return await get_catgegories(session)
 
 
@@ -85,6 +85,8 @@ async def put_magazine_category(
 ):
     # await check_admin(current_user, session)
     await put_category(
-        category_id, session, new_categ.name,
+        category_id,
+        session,
+        new_categ.name,
     )
     return SuccessfulResponse()

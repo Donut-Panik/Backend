@@ -7,7 +7,7 @@ from sqlalchemy.dialects.postgresql import (
     JSONB,
     TIMESTAMP,
     VARCHAR,
-    FLOAT
+    FLOAT,
 )
 from sqlalchemy.orm import declarative_base
 from enum import Enum
@@ -89,3 +89,21 @@ class EventsModel(DeclarativeBase):
     descriotion = Column("descriotion", VARCHAR(255), nullable=False)
     price = Column("price", FLOAT, nullable=False)
     type = Column("type", VARCHAR(12), nullable=False)
+
+
+class MyEventsModel(DeclarativeBase):
+    __tablename__ = "my_events"
+
+    id = Column("id", INTEGER, primary_key=True, unique=True, autoincrement=True)
+    user_id = Column(
+        "user_id",
+        INTEGER,
+        ForeignKey(Users.id, ondelete="CASCADE"),
+        nullable=False,
+    )
+    events_id = Column(
+        "events_id",
+        INTEGER,
+        ForeignKey(EventsModel.id),
+        nullable=False,
+    )

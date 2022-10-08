@@ -1,12 +1,20 @@
 # pylint: disable=no-self-argument,too-few-public-methods
 from typing import Optional
-from pydantic import BaseModel, Field, ValidationError, root_validator
+from pydantic import BaseModel, Field, root_validator
 from fastapi import Form
 
 
 class ProductRequest(BaseModel):
-    name: str = Form(..., description="Product Name", min_length=3, max_length=33,)
-    descriotion: str = Form(..., description="Product описание",)
+    name: str = Form(
+        ...,
+        description="Product Name",
+        min_length=3,
+        max_length=33,
+    )
+    descriotion: str = Form(
+        ...,
+        description="Product описание",
+    )
     price: float = Form(..., description="Product price", ge=1, lt=100000)
     category_id: int = Form(..., description="list categories", ge=1)
 
@@ -20,7 +28,7 @@ class ProductListGet(BaseModel):
     photo: str
     category_id: int
     category_name: str
-    
+
     class Config:
         orm_mode = True
 
@@ -48,4 +56,9 @@ class CategoriesResponse(BaseModel):
 
 
 class CategoriesRequestPut(BaseModel):
-    name: str = Field(..., description="Категория", min_length=3, max_length=33,)
+    name: str = Field(
+        ...,
+        description="Категория",
+        min_length=3,
+        max_length=33,
+    )

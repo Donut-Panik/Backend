@@ -15,4 +15,3 @@ from app.auth.oauth2 import get_current_user
 
 
 events_router = APIRouter(tags=["Events"])
-

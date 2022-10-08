@@ -31,7 +31,6 @@ class DefaultSettings(BaseSettings):
         environ.get("ACCESS_TOKEN_EXPIRE_MINUTES", 100000)
     )
 
-
     @property
     def database_settings(self) -> dict:
         """

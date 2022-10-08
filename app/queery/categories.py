@@ -29,10 +29,7 @@ async def add_category(category: CategoriesRequest, session: AsyncSession):
 
 
 async def get_catgegories(session: AsyncSession) -> List[CategoriesResponse]:
-    query = (
-        select(CategoriesModel)
-        .filter(CategoriesModel.deleted == False)
-    )
+    query = select(CategoriesModel).filter(CategoriesModel.deleted == False)
     items = await session.execute(query)
     return parse_obj_as(List[CategoriesResponse], items.scalars().unique().all())
 
