@@ -7,7 +7,6 @@ class History(BaseModel):
     page: int = Field(..., ge=1)
     offset: int = Field(..., ge=1)
     sort: str = Field(...,)
-    publicKey: str = Field(...)
 
 
 class TradeType(str, Enum):

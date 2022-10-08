@@ -4,11 +4,13 @@ from sqlalchemy import select
 from app.schemas.wallet import History, Trade
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import JSONResponse
+from app.db.models import Users
 
 
 async def get_history(history: History, current_user: str, session: AsyncSession):
-
-    new_wallet = f'/v1/wallets/{history.publicKey}/history'
+    user_query = select(Users).where(Users.nickname == current_user)
+    user: Users = await session.scalar(user_query)
+    new_wallet = f'/v1/wallets/{user.wallet_public}/history'
     async with httpx.AsyncClient() as client:
         response = await client.post(
             baseUrl+new_wallet, data={'page': history.page,

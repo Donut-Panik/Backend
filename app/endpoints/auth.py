@@ -1,7 +1,7 @@
 from pydantic import Field
 from datetime import timedelta
 
-from fastapi import APIRouter, Depends, Form, status, Body
+from fastapi import APIRouter, Depends, Form, status, Body, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.jwttoken import create_access_token
 from app.db.connection import get_session
@@ -49,3 +49,12 @@ async def registration_user(new_user: RegUser = Body(...),
 async def get_info_user(session: AsyncSession = Depends(get_session),
                         current_user: str = Depends(get_current_user)):
     return await get_info(current_user, session)
+
+
+@registr_router.get('/whoisuser/{nickname}',
+                    response_model=UserInfo,
+                    status_code=status.HTTP_200_OK)
+async def get_publick_info(nickname: str = Query(...,),
+                           session: AsyncSession = Depends(get_session),
+                           current_user: str = Depends(get_current_user)):
+    pass

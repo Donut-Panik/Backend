@@ -48,7 +48,7 @@ async def find_by_nickname(nickname: str, session: AsyncSession) -> str:
 
 
 async def get_info(nickname: str, session: AsyncSession):
-    user_query = select(Users).where(Users.phone == nickname)
+    user_query = select(Users).where(Users.nickname == nickname)
     user: Users = await session.scalar(user_query)
     userOut = UserInfo(name=user.name, surname=user.surname,
                        publicKey=user.wallet_public, privateKey=user.wallet_private,
