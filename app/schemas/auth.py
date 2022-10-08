@@ -42,3 +42,14 @@ class UserInfo(BaseModel):
     maticAmount: Optional[float]
     coinsAmount: Optional[float]
     balance: Optional[List[NftInfo]]
+
+
+class UserInfoAll(BaseModel):
+    name: str
+    surname: str
+    phone: str
+    publicKey: str
+    nickname: str
+    maticAmount: Optional[float]
+    coinsAmount: Optional[float]
+    balance: Optional[List[NftInfo]]

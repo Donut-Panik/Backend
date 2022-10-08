@@ -24,9 +24,6 @@ run:
 	uvicorn app.__main__:app --reload --port=8080 --host=0.0.0.0
 
 
-run_mock:
-	uvicorn mock.__main__:app --reload --port=8090
-
 revision:
 	alembic -c app/db/alembic.ini revision --autogenerate
 

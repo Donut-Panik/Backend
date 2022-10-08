@@ -7,8 +7,8 @@ from app.auth.jwttoken import create_access_token
 from app.db.connection import get_session
 from app.utils.get_settings import auth
 from app.utils.get_settings import get_settings
-from app.schemas.auth import Token, RegUser, AuthUser, UserInfo
-from app.queery.auth import check_nickname, create_user, find_by_nickname, get_info
+from app.schemas.auth import Token, RegUser, AuthUser, UserInfo, UserInfoAll
+from app.queery.auth import check_nickname, create_user, find_by_nickname, get_info, get_info_public
 from app.auth.oauth2 import get_current_user
 
 registr_router = APIRouter(tags=["Authorization"])
@@ -52,3 +52,10 @@ async def get_info_user(
     current_user: str = Depends(get_current_user),
 ):
     return await get_info(current_user, session)
+
+
+@registr_router.get("/info/{nickname}", response_model=UserInfoAll, status_code=status.HTTP_200_OK)
+async def get_info_pub_user(nickname: str = Query(...),
+                            session: AsyncSession = Depends(get_session),
+                            current_user: str = Depends(get_current_user)):
+    return await get_info_public(nickname, session)

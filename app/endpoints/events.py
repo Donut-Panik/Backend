@@ -15,3 +15,9 @@ from app.auth.oauth2 import get_current_user
 
 
 events_router = APIRouter(tags=["Events"])
+
+
+@events_router.post('/event',
+                    status_code=status.HTTP_200_OK,)
+async def add_new_event():
+    pass

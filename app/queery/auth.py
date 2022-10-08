@@ -1,7 +1,7 @@
 import json
 from sqlalchemy import select
 from app.db.models import Users
-from app.schemas.auth import RegUser, UserInfo
+from app.schemas.auth import RegUser, UserInfo, UserInfoAll
 import httpx
 from app.queery import baseUrl
 from app.schemas.exceptions import UserFoundException, NotFoundException
@@ -78,3 +78,23 @@ async def get_to_api(url: str) -> json:
         if response.status_code != 200:
             raise BadRequest(error=response.json())
         return response.json()
+
+
+async def get_info_public(nickname: str, session: AsyncSession):
+    user_query = select(Users).where(Users.nickname == nickname)
+    user: Users = await session.scalar(user_query)
+    userOut = UserInfoAll(
+        name=user.name,
+        surname=user.surname,
+        publicKey=user.wallet_public,
+        nickname=user.nickname,
+        phone=user.phone,
+    )
+    balance_money = f"/v1/wallets/{user.wallet_public}/balance"
+    response = await get_to_api(balance_money)
+    userOut.maticAmount = response["maticAmount"]
+    userOut.coinsAmount = response["coinsAmount"]
+    balance_nft = f"/v1/wallets/{user.wallet_public}/nft/balance"
+    response = await get_to_api(balance_nft)
+    userOut.balance = response["balance"]
+    return userOut
