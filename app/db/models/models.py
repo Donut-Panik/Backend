@@ -22,6 +22,12 @@ class User_type(Enum):
     User = 2
 
 
+class Prize_type(Enum):
+    NFT = 1
+    Rubl = 2
+    Minti = 3
+
+
 class Users(DeclarativeBase):
     __tablename__ = "users"
 
@@ -73,3 +79,13 @@ class ProductCategoriesModel(DeclarativeBase):
         ForeignKey(CategoriesModel.id),
         nullable=False,
     )
+
+
+class EventsModel(DeclarativeBase):
+    __tablename__ = "events"
+
+    id = Column("id", INTEGER, primary_key=True, unique=True, autoincrement=True)
+    name = Column("name", VARCHAR(255), nullable=False)
+    descriotion = Column("descriotion", VARCHAR(255), nullable=False)
+    price = Column("price", FLOAT, nullable=False)
+    type = Column("type", VARCHAR(12), nullable=False)
