@@ -1,5 +1,1 @@
-S3_ENDPOINT_URL = 'https://storage.yandexcloud.net'
-S3_AWS_ACCESS_KEY_ID = 'YCAJE1LYOWrgZ81Na1aqZky4d'
-S3_AWS_SECRET_ACCESS_KEY = 'YCMp8Can7euiDJhi1QqEwA6V2QUnoW7X-PVpMi1s'
-BUCKET_NAME = 'vtb-api'
-REGION_NAME = 'ru-central1'
+
