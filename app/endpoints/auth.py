@@ -7,8 +7,8 @@ from app.auth.jwttoken import create_access_token
 from app.db.connection import get_session
 from app.utils.get_settings import auth
 from app.utils.get_settings import get_settings
-from app.schemas.auth import Token, RegUser, AuthUser
-from app.queery.auth import check_nickname, create_user, find_by_nickname
+from app.schemas.auth import Token, RegUser, AuthUser, UserInfo
+from app.queery.auth import check_nickname, create_user, find_by_nickname, get_info
 from app.auth.oauth2 import get_current_user
 registr_router = APIRouter(tags=["Authorization"])
 
@@ -44,7 +44,8 @@ async def registration_user(new_user: RegUser = Body(...),
 
 
 @registr_router.get('/whoiam',
+                    response_model=UserInfo,
                     status_code=status.HTTP_200_OK)
 async def get_info_user(session: AsyncSession = Depends(get_session),
                         current_user: str = Depends(get_current_user)):
-    pass
+    return await get_info(current_user, session)

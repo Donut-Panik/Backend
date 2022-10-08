@@ -2,15 +2,16 @@ from app.schemas.product import ProductRequest
 from app.db.models import ProductsModel, ProductCategoriesModel, CategoriesModel
 from sqlalchemy import select
 
-async def create_product(product: ProductRequest, url: str, session):
-    new_prodcut = ProductsModel(name=product.name,
-                                descriotion=product.descriotion,
-                                price=product.price,
+async def create_product(name, descriotion, price,
+                         category_id, url, session):
+    new_prodcut = ProductsModel(name=name,
+                                descriotion=descriotion,
+                                price=price,
                                 photo=url)
     session.add(new_prodcut)
     await session.flush()
     new_cat_pr = ProductCategoriesModel(product_id=new_prodcut.id,
-                                        category_id=product.category_id)
+                                        category_id=category_id)
     session.add(new_cat_pr)
     await session.commit()
 
