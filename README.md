@@ -25,6 +25,7 @@ foo@bar:~$ cd Backend
 ```bash
 foo@bar:~$ docker-compose up
 ```
+####Swagger доступен по /swagger
 ###  Для дальнейшей доработки
 1. Клонируем
 ```bash
@@ -59,6 +60,7 @@ foo@bar:~$ make upgrade_head
 ```bash
 foo@bar:~$ make run
 ```
+####Swagger доступен по /swagger
 ## Deploymant Diagram
 ![Deployment](https://github.com/Donut-Panik/Backend/blob/main/photo/Deployment.png)
 
