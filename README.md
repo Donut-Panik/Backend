@@ -60,6 +60,9 @@ foo@bar:~$ make upgrade_head
 foo@bar:~$ make run
 ```
 ## Deploymant Diagram
-
+![Deployment](https://github.com/Donut-Panik/Backend/blob/main/photo/Deployment.png)
 
 ## C4 diagram 
+![C4](https://github.com/Donut-Panik/Backend/blob/main/photo/c4.png)
+## DB scheme
+![DB](https://github.com/Donut-Panik/Backend/blob/main/photo/schema.png)
