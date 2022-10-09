@@ -38,8 +38,7 @@ def get_app() -> FastAPI:
     """
     Creates application and all dependable objects.
     """
-    description = """Микросервис, реализующий
-                    терминал приема корпоративных оплат."""
+    description = """Сервис, реализующий VTB-00"""
 
     application = FastAPI(
         title="Vtbша",
