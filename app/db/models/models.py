@@ -89,6 +89,10 @@ class EventsModel(DeclarativeBase):
     descriotion = Column("descriotion", VARCHAR(255), nullable=False)
     price = Column("price", FLOAT, nullable=False)
     type = Column("type", VARCHAR(12), nullable=False)
+    photo = Column("photo", VARCHAR(255), nullable=False)
+    author_id = Column("author_id", INTEGER, ForeignKey(Users.id),
+                       nullable=False)
+    date_end = Column("date_end", TIMESTAMP, nullable=False)
 
 
 class MyEventsModel(DeclarativeBase):
@@ -107,3 +111,4 @@ class MyEventsModel(DeclarativeBase):
         ForeignKey(EventsModel.id),
         nullable=False,
     )
+    condition = Column("condition", VARCHAR(255), nullable=False)
