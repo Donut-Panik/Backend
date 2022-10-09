@@ -66,3 +66,5 @@ foo@bar:~$ make run
 ![C4](https://github.com/Donut-Panik/Backend/blob/main/photo/c4.png)
 ## DB scheme
 ![DB](https://github.com/Donut-Panik/Backend/blob/main/photo/schema.png)
+## Swagger развернуто Backend на сервере
+http://92.63.102.121/swagger#/
