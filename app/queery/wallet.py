@@ -5,6 +5,7 @@ from app.schemas.wallet import History, Trade, transactionHash
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import JSONResponse
 from app.db.models import Users
+import curlify
 
 urls3 = "https://storage.yandexcloud.net/vtb-api/"
 
@@ -40,7 +41,6 @@ async def remittance_to_user(trade: Trade, current_user: str, session: AsyncSess
             new_wallet = "/v1/transfers/matic"
             what = "amount"
             isit = trade.amount
-    # TODO: пофиксить amount
     async with httpx.AsyncClient() as client:
         response = await client.post(
             baseUrl + new_wallet,
